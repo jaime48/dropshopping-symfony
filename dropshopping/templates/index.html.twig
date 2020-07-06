@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="zxx">
+{% extends 'base.html.twig' %}
 
-{{ include('header/header.html.twig') }}
 
-<body>
-
-{{ include('header/navi.html.twig') }}
+{% block body %}
 
     <!-- Hero Section Begin -->
     <section class="hero">
@@ -533,11 +529,4 @@
     </section>
     <!-- Blog Section End -->
 
-
-
-    <!-- Footer Section Begin -->
-    {{ include('footer/footer.html.twig') }}
-    <!-- Footer Section End -->
-</body>
-
-</html>
+{% endblock %}
