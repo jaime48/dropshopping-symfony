@@ -1,0 +1,6 @@
+parameters:
+  database_host: db
+  database_port: 3310
+  database_name: dropshopping
+  database_user: root
+  database_password: root
