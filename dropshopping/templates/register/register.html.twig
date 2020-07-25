@@ -1,0 +1,33 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="checkout spad">
+        <div class="container">
+            <div class="checkout__form">
+                <h4>Register</h4>
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <div class="checkout__input">
+                            {{ form_row(form.username) }}
+                        </div>
+                        <div class="checkout__input">
+                            {{ form_row(form.email) }}
+                        </div>
+                        <div class="checkout__input">
+                            {{ form_row(form.password.first) }}
+                            {{ form_row(form.password.second) }}
+                        </div>
+
+                        <button type="submit" class="site-btn">Register!</button>
+
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
