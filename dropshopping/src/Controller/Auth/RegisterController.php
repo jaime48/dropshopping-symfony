@@ -29,7 +29,7 @@ class RegisterController extends AbstractController
             $entityManager->persist($customer);
             $entityManager->flush();
 
-            return $this->redirectToRoute('/');
+            return $this->redirectToRoute('index');
         }
 
         return $this->render(

@@ -3,13 +3,22 @@
 
 namespace App\Validator\Constraints;
 
+use App\Entity\Customers;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Exception\UnexpectedValueException;
+use App\Repository\CustomersRepository;
 
 class ConstraintEmailValidator extends ConstraintValidator
 {
+    public $customersRepository;
+
+    public function __construct(CustomersRepository $customersRepository)
+    {
+        $this->customersRepository = $customersRepository;
+    }
+
     public function validate($value, Constraint $constraint)
     {
         if (!$constraint instanceof ConstraintEmail) {
@@ -30,8 +39,8 @@ class ConstraintEmailValidator extends ConstraintValidator
             // throw new UnexpectedValueException($value, 'string|int');
         }
 
-        if (true) {
-            // the argument must be a string or an object implementing __toString()
+        $product =  $this->customersRepository->findOneBy(['email' => $value]);
+        if ($product) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ string }}', $value)
                 ->addViolation();

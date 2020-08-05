@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class ConstraintEmail extends Constraint
 {
-    public $message = 'The Email "{{ string }}" is already taken.';
+    public $message = 'The Email {{ string }} is already taken.';
 
     public function validatedBy()
     {
