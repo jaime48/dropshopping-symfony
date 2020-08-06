@@ -1,3 +1,7 @@
 index:
     path: /
     controller: App\Controller\IndexController::index
+
+register_confirm:
+    path: /register/confirm/{token}
+    controller: App\Controller\Auth\RegisterController::confirm

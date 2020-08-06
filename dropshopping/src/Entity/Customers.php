@@ -35,13 +35,19 @@ class Customers implements UserInterface, \Serializable
     private $email;
 
     /**
-     * @ORM\Column(name="is_active", type="boolean")
+     * @ORM\Column(name="is_active", type="boolean",  options={"default" : 0})
      */
     private $isActive;
 
+
+    /**
+     * @ORM\Column(type="string", length=128)
+     */
+    private $confirmationToken;
+
     public function __construct()
     {
-        $this->isActive = true;
+        $this->isActive = false;
         // $this->salt = md5(uniqid('', true));
     }
 
@@ -70,6 +76,17 @@ class Customers implements UserInterface, \Serializable
     public function getPassword()
     {
         return $this->password;
+    }
+
+    public function setConfirmationToken(string $confirmationToken): self
+    {
+        $this->confirmationToken = $confirmationToken;
+        return $this;
+    }
+
+    public function getConfirmationToken()
+    {
+        return $this->confirmationToken;
     }
 
     public function setEmail(string $email): self
