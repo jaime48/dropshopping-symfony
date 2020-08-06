@@ -28,7 +28,7 @@ class RegisterController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($customer);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Registration completed');
             return $this->redirectToRoute('index');
         }
 

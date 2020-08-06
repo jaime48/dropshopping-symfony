@@ -7,6 +7,12 @@
 
 <body>
 
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+
 {% block navi %}
     {{ include('header/navi.html.twig') }}
 {% endblock %}
