@@ -4,6 +4,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -43,7 +44,7 @@ class Customers implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=128)
      */
-    private $confirmationToken;
+    private $confirmation_token;
 
     public function __construct()
     {
@@ -80,13 +81,13 @@ class Customers implements UserInterface, \Serializable
 
     public function setConfirmationToken(string $confirmationToken): self
     {
-        $this->confirmationToken = $confirmationToken;
+        $this->confirmation_token = $confirmationToken;
         return $this;
     }
 
     public function getConfirmationToken()
     {
-        return $this->confirmationToken;
+        return $this->confirmation_token;
     }
 
     public function setEmail(string $email): self
@@ -98,6 +99,12 @@ class Customers implements UserInterface, \Serializable
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+        return $this;
     }
 
     public function getRoles()
