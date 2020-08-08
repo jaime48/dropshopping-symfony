@@ -29,12 +29,12 @@
         <div class="header__top__right__auth">
             <ul>
                 <li>
-           <i class="fa fa-user">
-               <a href="#">Login1</a>
-               <ul class="header__menu__dropdown">
-                   <li><a href="./register">Register</a></li>
-               </ul>
-           </i>
+                    <i class="fa fa-user">
+                        <a href="#">Login1</a>
+                        <ul class="header__menu__dropdown">
+                            <li><a href="./register">Register</a></li>
+                        </ul>
+                    </i>
                 </li>
             </ul>
         </div>
@@ -101,12 +101,25 @@
                                 <li><a href="#">English</a></li>
                             </ul>
                         </div>
-                        <div class="header__top__right__language">
-                            <div><i class="fa fa-user"></i> Login</div>
-                        </div>
-                        <div class="header__top__right__language">
-                            <a href="{{ path('register') }}"><div><i class="fa fa-user"></i> Register</div></a>
-                        </div>
+
+                        {% if app.user %}
+                            <div class="header__top__right__language">
+                                <div><i class="fa fa-user"></i> Hello, {{ app.user.username }}</div>
+                                <span class="arrow_carrot-down"></span>
+                                <ul>
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="{{ path('app_logout') }}">Logout</a></li>
+                                </ul>
+                            </div>
+                        {% else %}
+                            <div class="header__top__right__language">
+                                <a href="{{ path('app_login') }}"> <div><i class="fa fa-user"></i> Login</div></a>
+                            </div>
+                            <div class="header__top__right__language">
+                                <a href="{{ path('register') }}"><div><i class="fa fa-user"></i> Register</div></a>
+                            </div>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
