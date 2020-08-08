@@ -107,6 +107,11 @@ class Customers implements UserInterface, \Serializable
         return $this;
     }
 
+    public function getIsActive()
+    {
+       return  $this->isActive;
+    }
+
     public function getRoles()
     {
         return array('ROLE_USER');
