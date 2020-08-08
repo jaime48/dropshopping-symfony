@@ -2,28 +2,51 @@
 
 namespace App\Controller\Auth;
 
+use App\Security\CustomerAuthenticator;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends AbstractController
 {
+    private $customerAuthenticator;
+
+    public function __construct(CustomerAuthenticator $customerAuthenticator)
+    {
+        $this->customerAuthenticator = $customerAuthenticator;
+    }
+
+
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(Request $request): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+        if ($request->getSession()->get( Security::LAST_USERNAME)) {
+            return $this->redirectToRoute('index');
+        }
 
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+        if ($request->isMethod('post')) {
+            $credentials = $this->customerAuthenticator->getCredentials($request);
+            $customer = $this->customerAuthenticator->getCustomer($credentials);
+            $auth = $this->customerAuthenticator->checkCredentials($credentials, $customer);
+            if ($auth) {
+                $request->getSession()->set(
+                    Security::LAST_USERNAME,
+                    [
+                        'name' => $customer->getUsername(),
+                        'email' =>  $customer->getEmail()
+                    ]
+                );
+                return $this->render('index.html.twig');
+            } else {
+                return $this->render('security/login.html.twig', ['last_username' => '', 'error' => 'wrong credential']);
+            }
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        }
+        return $this->render('security/login.html.twig', ['last_username' => '', 'error' => '']);
     }
 
     /**
