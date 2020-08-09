@@ -67,7 +67,6 @@ class CustomerAuthenticator extends AbstractFormLoginAuthenticator implements Pa
         }
 
         $user = $this->entityManager->getRepository(Customers::class)->findOneBy(['email' => $credentials['email']]);
-
         if (!$user) {
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
@@ -78,6 +77,9 @@ class CustomerAuthenticator extends AbstractFormLoginAuthenticator implements Pa
 
     public function checkCredentials($credentials, UserInterface $user)
     {
+        if (!$user->getIsActive()) {
+            throw new CustomUserMessageAuthenticationException('Email not verified !');
+        }
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 

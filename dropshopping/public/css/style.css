@@ -639,7 +639,7 @@ ol {
 }
 
 .hero__search__form {
-	width: 610px;
+	width: 95%;
 	height: 50px;
 	border: 1px solid #ebebeb;
 	position: relative;
@@ -730,7 +730,6 @@ ol {
 	height: 431px;
 	display: flex;
 	align-items: center;
-	padding-left: 75px;
 }
 
 .hero__text span {
@@ -858,7 +857,7 @@ ol {
 }
 
 .featured__item__pic {
-	height: 270px;
+	height: 120px;
 	position: relative;
 	overflow: hidden;
 	background-position: center center;
