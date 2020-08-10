@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\PasswordReset;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Illuminate\Support\Str;
+//use Symfony\Bundle\MakerBundle\Str;
 
 /**
  * @method PasswordReset|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,9 +16,25 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class PasswordResetRepository extends ServiceEntityRepository
 {
+
+    const PASSWORD_RESET_KEY = 'password-reset';
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, PasswordReset::class);
+    }
+
+    public function generatePasswordResetLink($email) {
+        $token = hash_hmac('sha256',$email.self::PASSWORD_RESET_KEY.random_bytes(80), $_ENV['APP_SECRET']);
+        return $token;
+
+    }
+
+    public function deleteByEmail($value): ? bool
+    {
+        return $this->createQuery('DELETE FROM password_reset e WHERE e.email = :email')
+            >setParameter('email', $value)->execute()
+            ;
     }
 
     // /**

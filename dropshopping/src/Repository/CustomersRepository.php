@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Customers;
+use App\Entity\PasswordReset;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Illuminate\Support\Str;
@@ -16,17 +17,11 @@ use Illuminate\Support\Str;
 class CustomersRepository extends ServiceEntityRepository
 {
 
-    const PASSWORD_RESET_KEY = 'password-reset';
-
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Customers::class);
     }
 
-    public function generatePasswordResetLink($email) {
-         $str = $email.self::PASSWORD_RESET_KEY.Str::random(80);
-
-    }
 
     // /**
     //  * @return Customers[] Returns an array of Customers objects
