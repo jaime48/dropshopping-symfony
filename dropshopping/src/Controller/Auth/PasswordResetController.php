@@ -30,7 +30,7 @@ class PasswordResetController extends AbstractController
         $this->router = $router;
         $this->urlGenerator = $urlGenerator;
     }
-    public function reset(Request $request)
+    public function reset(Request $request, \Swift_Mailer $mailer)
     {
         if ($request->isMethod('post')) {
             if ($request->get('email')) {
@@ -54,6 +54,22 @@ class PasswordResetController extends AbstractController
                     $link = $this->urlGenerator->generate('password_reset_verify', [
                         'token' => $token,
                     ], UrlGeneratorInterface::ABSOLUTE_URL);
+
+                    $message = (new \Swift_Message('Register Confirm'))
+                        ->setSubject('Register Confirm')
+                        ->setFrom('duyang48484848@gmail.com')
+                        ->setTo($request->get('email'))
+                        ->setBody(
+                            $this->renderView(
+                                'security/emails/reset.html.twig',
+                                [
+                                    'link' => $link
+                                ]
+                            ),
+                            'text/html'
+                        );
+
+                    $mailer->send($message);
 
                     $this->addFlash('success', 'Reset link sent, please check your email');
 
