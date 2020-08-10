@@ -5,6 +5,7 @@ namespace App\Controller\Auth;
 use App\Entity\PasswordReset;
 use App\Repository\CustomersRepository;
 use App\Repository\PasswordResetRepository;
+use App\Validator\Constraints\ConstraintEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class PasswordResetController extends AbstractController
 {
@@ -30,6 +32,7 @@ class PasswordResetController extends AbstractController
         $this->router = $router;
         $this->urlGenerator = $urlGenerator;
     }
+
     public function reset(Request $request, \Swift_Mailer $mailer)
     {
         if ($request->isMethod('post')) {
@@ -55,9 +58,9 @@ class PasswordResetController extends AbstractController
                         'token' => $token,
                     ], UrlGeneratorInterface::ABSOLUTE_URL);
 
-                    $message = (new \Swift_Message('Register Confirm'))
-                        ->setSubject('Register Confirm')
-                        ->setFrom('duyang48484848@gmail.com')
+                    $message = (new \Swift_Message('Password Rese'))
+                        ->setSubject('Password Reset')
+                        ->setFrom(['duyang48484848@gmail.com' => 'OGANI'])
                         ->setTo($request->get('email'))
                         ->setBody(
                             $this->renderView(
@@ -73,11 +76,12 @@ class PasswordResetController extends AbstractController
 
                     $this->addFlash('success', 'Reset link sent, please check your email');
 
-                    return $this->render('index.html.twig');
+                    return $this->redirectToRoute('index');
 
                 }
             }
         }
+
         return $this->render('security/reset.html.twig');
     }
 
@@ -92,15 +96,32 @@ class PasswordResetController extends AbstractController
         }
     }
 
-    public function resetSubmit(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
+    public function resetSubmit(Request $request, UserPasswordEncoderInterface $passwordEncoder, ValidatorInterface $validator) {
+
+        $errors = $validator->validate(
+            $request->get('password'),
+            new ConstraintEmail()
+        );
+        if (0 !== count($errors)) {
+            $referer = $request->headers->get('referer');
+            $this->addFlash('error', 'Password not right format');
+            return $this->redirect($referer);
+        }
         $customer =  $this->customersRepository->findOneBy(['email' => $request->get('email')]);
         $password = $passwordEncoder->encodePassword($customer, $request->get('password'));
         $customer->setPassword($password);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($customer);
         $entityManager->flush();
-        $this->addFlash('success', 'Reset link sent, please check your email');
 
-        return $this->render('index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $RAW_QUERY = "DELETE FROM password_reset where password_reset.email = \"".$request->get('email')."\"";
+        $statement = $em->getConnection()->prepare($RAW_QUERY);
+        $statement->execute();
+
+        $this->get('security.token_storage')->setToken(null);
+        $this->addFlash('success', 'You have successfully reset your password, please login');
+
+        return $this->redirectToRoute('index');
     }
 }
