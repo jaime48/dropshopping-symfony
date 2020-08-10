@@ -5,3 +5,7 @@ index:
 register_confirm:
     path: /register/confirm/{token}
     controller: App\Controller\Auth\RegisterController::confirm
+
+password_reset:
+    path: /password/reset
+    controller: App\Controller\Auth\PasswordResetController::reset
