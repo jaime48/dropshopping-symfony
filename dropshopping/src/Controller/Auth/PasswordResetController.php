@@ -13,6 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Validator\Constraints\EqualTo;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class PasswordResetController extends AbstractController
@@ -97,11 +99,17 @@ class PasswordResetController extends AbstractController
     }
 
     public function resetSubmit(Request $request, UserPasswordEncoderInterface $passwordEncoder, ValidatorInterface $validator) {
-
         $errors = $validator->validate(
             $request->get('password'),
-            new ConstraintEmail()
+            [
+                new Regex([
+                    'pattern' => '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
+                ]),
+                new EqualTo( $request->get('confirm_password'))
+            ]
+
         );
+
         if (0 !== count($errors)) {
             $referer = $request->headers->get('referer');
             $this->addFlash('error', 'Password not right format');
