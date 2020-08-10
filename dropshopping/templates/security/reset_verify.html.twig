@@ -1,0 +1,28 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="checkout spad">
+        <div class="container">
+            <div class="checkout__form">
+                <h4>Rest Password</h4>
+                <form method="post" action="{{ path('password_reset_submit') }}">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <div class="checkout__input">
+                            New Password<input name="password"  type="password">
+                            Confirm Password<input name="confirm_password">
+                            <input hidden="hidden" name="email" type="password" value="{{ email }}">
+                        </div>
+
+                        <button type="submit" class="site-btn">Reset!</button>
+                    </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

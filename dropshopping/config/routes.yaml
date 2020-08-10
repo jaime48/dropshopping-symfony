@@ -5,3 +5,15 @@ index:
 register_confirm:
     path: /register/confirm/{token}
     controller: App\Controller\Auth\RegisterController::confirm
+
+password_reset:
+    path: /password/reset
+    controller: App\Controller\Auth\PasswordResetController::reset
+
+password_reset_verify:
+    path: /password/reset/veriy/{token}
+    controller: App\Controller\Auth\PasswordResetController::resetVerify
+
+password_reset_submit:
+    path: /password/reset/submit
+    controller: App\Controller\Auth\PasswordResetController::resetSubmit

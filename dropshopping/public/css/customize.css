@@ -1,3 +1,24 @@
 .checkout__input ul li {
     color: red;
 }
+
+.login_form {
+    width: 60%;
+    margin: auto;
+}
+
+.login_button {
+    margin-top:10px
+}
+
+@media screen and (max-width: 500px) {
+    .product-list {
+        margin-top: 100px;
+    }
+}
+
+.forget-password-hint {
+    display: inline-block;
+    color:#007bff;
+    margin-left: 10px
+}
