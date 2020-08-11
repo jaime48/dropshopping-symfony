@@ -42,6 +42,7 @@ class ComposerStaticInit5ca5ed4ac3d0163ef0ee344b502d7469
         ),
         'S' => 
         array (
+            'Symfony\\WebpackEncoreBundle\\' => 28,
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Php73\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
@@ -180,6 +181,10 @@ class ComposerStaticInit5ca5ed4ac3d0163ef0ee344b502d7469
         'Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
+        'Symfony\\WebpackEncoreBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
@@ -2504,12 +2509,14 @@ class ComposerStaticInit5ca5ed4ac3d0163ef0ee344b502d7469
         'Symfony\\Bundle\\MakerBundle\\ApplicationAwareMakerInterface' => __DIR__ . '/..' . '/symfony/maker-bundle/src/ApplicationAwareMakerInterface.php',
         'Symfony\\Bundle\\MakerBundle\\Command\\MakerCommand' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Command/MakerCommand.php',
         'Symfony\\Bundle\\MakerBundle\\ConsoleStyle' => __DIR__ . '/..' . '/symfony/maker-bundle/src/ConsoleStyle.php',
+        'Symfony\\Bundle\\MakerBundle\\Console\\MigrationDiffFilteredOutput' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Console/MigrationDiffFilteredOutput.php',
         'Symfony\\Bundle\\MakerBundle\\DependencyBuilder' => __DIR__ . '/..' . '/symfony/maker-bundle/src/DependencyBuilder.php',
         'Symfony\\Bundle\\MakerBundle\\DependencyInjection\\CompilerPass\\MakeCommandRegistrationPass' => __DIR__ . '/..' . '/symfony/maker-bundle/src/DependencyInjection/CompilerPass/MakeCommandRegistrationPass.php',
         'Symfony\\Bundle\\MakerBundle\\DependencyInjection\\CompilerPass\\RemoveMissingParametersPass' => __DIR__ . '/..' . '/symfony/maker-bundle/src/DependencyInjection/CompilerPass/RemoveMissingParametersPass.php',
         'Symfony\\Bundle\\MakerBundle\\DependencyInjection\\CompilerPass\\SetDoctrineManagerRegistryClassPass' => __DIR__ . '/..' . '/symfony/maker-bundle/src/DependencyInjection/CompilerPass/SetDoctrineManagerRegistryClassPass.php',
         'Symfony\\Bundle\\MakerBundle\\DependencyInjection\\Configuration' => __DIR__ . '/..' . '/symfony/maker-bundle/src/DependencyInjection/Configuration.php',
         'Symfony\\Bundle\\MakerBundle\\DependencyInjection\\MakerExtension' => __DIR__ . '/..' . '/symfony/maker-bundle/src/DependencyInjection/MakerExtension.php',
+        'Symfony\\Bundle\\MakerBundle\\Docker\\DockerDatabaseServices' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Docker/DockerDatabaseServices.php',
         'Symfony\\Bundle\\MakerBundle\\Doctrine\\BaseCollectionRelation' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Doctrine/BaseCollectionRelation.php',
         'Symfony\\Bundle\\MakerBundle\\Doctrine\\BaseRelation' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Doctrine/BaseRelation.php',
         'Symfony\\Bundle\\MakerBundle\\Doctrine\\BaseSingleRelation' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Doctrine/BaseSingleRelation.php',
@@ -2538,6 +2545,7 @@ class ComposerStaticInit5ca5ed4ac3d0163ef0ee344b502d7469
         'Symfony\\Bundle\\MakerBundle\\Maker\\MakeCommand' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Maker/MakeCommand.php',
         'Symfony\\Bundle\\MakerBundle\\Maker\\MakeController' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Maker/MakeController.php',
         'Symfony\\Bundle\\MakerBundle\\Maker\\MakeCrud' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Maker/MakeCrud.php',
+        'Symfony\\Bundle\\MakerBundle\\Maker\\MakeDockerDatabase' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Maker/MakeDockerDatabase.php',
         'Symfony\\Bundle\\MakerBundle\\Maker\\MakeEntity' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Maker/MakeEntity.php',
         'Symfony\\Bundle\\MakerBundle\\Maker\\MakeFixtures' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Maker/MakeFixtures.php',
         'Symfony\\Bundle\\MakerBundle\\Maker\\MakeForm' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Maker/MakeForm.php',
@@ -2572,6 +2580,7 @@ class ComposerStaticInit5ca5ed4ac3d0163ef0ee344b502d7469
         'Symfony\\Bundle\\MakerBundle\\Util\\ClassNameDetails' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Util/ClassNameDetails.php',
         'Symfony\\Bundle\\MakerBundle\\Util\\ClassNameValue' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Util/ClassNameValue.php',
         'Symfony\\Bundle\\MakerBundle\\Util\\ClassSourceManipulator' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Util/ClassSourceManipulator.php',
+        'Symfony\\Bundle\\MakerBundle\\Util\\ComposeFileManipulator' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Util/ComposeFileManipulator.php',
         'Symfony\\Bundle\\MakerBundle\\Util\\ComposerAutoloaderFinder' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Util/ComposerAutoloaderFinder.php',
         'Symfony\\Bundle\\MakerBundle\\Util\\MakerFileLinkFormatter' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Util/MakerFileLinkFormatter.php',
         'Symfony\\Bundle\\MakerBundle\\Util\\PrettyPrinter' => __DIR__ . '/..' . '/symfony/maker-bundle/src/Util/PrettyPrinter.php',
@@ -4826,6 +4835,21 @@ class ComposerStaticInit5ca5ed4ac3d0163ef0ee344b502d7469
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Symfony\\Polyfill\\Php73\\Php73' => __DIR__ . '/..' . '/symfony/polyfill-php73/Php73.php',
         'Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
+        'Symfony\\WebpackEncoreBundle\\Asset\\EntrypointLookup' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/Asset/EntrypointLookup.php',
+        'Symfony\\WebpackEncoreBundle\\Asset\\EntrypointLookupCollection' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/Asset/EntrypointLookupCollection.php',
+        'Symfony\\WebpackEncoreBundle\\Asset\\EntrypointLookupCollectionInterface' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/Asset/EntrypointLookupCollectionInterface.php',
+        'Symfony\\WebpackEncoreBundle\\Asset\\EntrypointLookupInterface' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/Asset/EntrypointLookupInterface.php',
+        'Symfony\\WebpackEncoreBundle\\Asset\\IntegrityDataProviderInterface' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/Asset/IntegrityDataProviderInterface.php',
+        'Symfony\\WebpackEncoreBundle\\Asset\\TagRenderer' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/Asset/TagRenderer.php',
+        'Symfony\\WebpackEncoreBundle\\CacheWarmer\\EntrypointCacheWarmer' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/CacheWarmer/EntrypointCacheWarmer.php',
+        'Symfony\\WebpackEncoreBundle\\DependencyInjection\\Configuration' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/DependencyInjection/Configuration.php',
+        'Symfony\\WebpackEncoreBundle\\DependencyInjection\\WebpackEncoreExtension' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/DependencyInjection/WebpackEncoreExtension.php',
+        'Symfony\\WebpackEncoreBundle\\EventListener\\ExceptionListener' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/EventListener/ExceptionListener.php',
+        'Symfony\\WebpackEncoreBundle\\EventListener\\PreLoadAssetsEventListener' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/EventListener/PreLoadAssetsEventListener.php',
+        'Symfony\\WebpackEncoreBundle\\Exception\\EntrypointNotFoundException' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/Exception/EntrypointNotFoundException.php',
+        'Symfony\\WebpackEncoreBundle\\Exception\\UndefinedBuildException' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/Exception/UndefinedBuildException.php',
+        'Symfony\\WebpackEncoreBundle\\Twig\\EntryFilesTwigExtension' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/Twig/EntryFilesTwigExtension.php',
+        'Symfony\\WebpackEncoreBundle\\WebpackEncoreBundle' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/WebpackEncoreBundle.php',
         'Twig\\Cache\\CacheInterface' => __DIR__ . '/..' . '/twig/twig/src/Cache/CacheInterface.php',
         'Twig\\Cache\\FilesystemCache' => __DIR__ . '/..' . '/twig/twig/src/Cache/FilesystemCache.php',
         'Twig\\Cache\\NullCache' => __DIR__ . '/..' . '/twig/twig/src/Cache/NullCache.php',
