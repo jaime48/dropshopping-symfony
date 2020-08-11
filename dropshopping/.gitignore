@@ -34,7 +34,7 @@
 /web/bundles/
 /web/uploads/
 
-# PHPUnit
+# PHPUnitnpm
 /app/phpunit.xml
 /phpunit.xml
 
@@ -53,7 +53,6 @@
 /.env
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
-/public/build/
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
