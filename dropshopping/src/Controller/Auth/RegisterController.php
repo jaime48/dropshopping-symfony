@@ -49,7 +49,7 @@ class RegisterController extends AbstractController
 
             $message = (new \Swift_Message('Register Confirm'))
                 ->setSubject('Register Confirm')
-                ->setFrom('duyang48484848@gmail.com')
+                ->setFrom([$this->getParameter('email_from') => $this->getParameter('email_from_name')])
                 ->setTo($customer->getEmail())
                 ->setBody(
                     $this->renderView(

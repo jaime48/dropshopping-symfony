@@ -62,7 +62,7 @@ class PasswordResetController extends AbstractController
 
                     $message = (new \Swift_Message('Password Rese'))
                         ->setSubject('Password Reset')
-                        ->setFrom(['duyang48484848@gmail.com' => 'OGANI'])
+                        ->setFrom([$this->getParameter('email_from') => $this->getParameter('email_from_name')])
                         ->setTo($request->get('email'))
                         ->setBody(
                             $this->renderView(

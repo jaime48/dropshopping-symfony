@@ -4,3 +4,6 @@ parameters:
   database_name: dropshopping
   database_user: root
   database_password: root
+
+  email_from: duyang48484848@gmail.com
+  email_from_name: OGANI
