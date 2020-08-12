@@ -1,11 +1,16 @@
 <template>
-    <div>
-        <h2 class="center">My Application</h2>
-        <div v-text="message"></div>
-        {{ message }}
-        <ul>
-            <li :key="word.id" v-for="word in words">{{ word }}</li>
-        </ul>
+    <div class="col-lg-3">
+        <div class="hero__categories">
+            <div class="hero__categories__all">
+                <i class="fa fa-bars"></i>
+                <span>All Categories</span>
+            </div>
+            <ul>
+                <li v-for="(category, index) in categories" :key="index">
+                    <a v-bind:href="'/category/search/' + category.id">{{category.name}}</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -14,11 +19,20 @@
         data() {
             return {
                 message: "A list of words",
-                words: ['1', '2']
+                categories: []
             };
         },
+        methods : {
+            read()
+            {
+                return  this.$http.get('/category/list').then((response) => {
+                    this.categories = response.data;
+                    console.log(response);
+                })
+            },
+        },
         mounted() {
-
+            this.read();
         }
     };
 </script>

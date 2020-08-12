@@ -17,3 +17,7 @@ password_reset_verify:
 password_reset_submit:
     path: /password/reset/submit
     controller: App\Controller\Auth\PasswordResetController::resetSubmit
+
+category_list:
+    path: /category/list
+    controller: App\Controller\Product\CategoryController::list

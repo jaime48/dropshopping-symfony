@@ -15,11 +15,13 @@ console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
 
 
 import Vue from 'vue';
+import axios from 'axios'
 import App from '../components/App';
+
+Vue.prototype.$http = axios
 
 Vue.component('category-component', require('../components/CategoryComponent.vue').default);
 
 new Vue({
     el: '#app',
-    render: h => h(App)
 });
