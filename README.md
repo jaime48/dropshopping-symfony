@@ -1,2 +1,1 @@
 
-http://dropshopping.bazingago.com
